@@ -1,0 +1,9 @@
+[submodule "roles/ansible_appaware_mount"]
+	path = roles/ansible_appaware_mount
+	url = https://github.com/Actifio/ansible_appaware_mount.git
+[submodule "roles/oracle_install"]
+	path = roles/oracle_install
+	url = https://github.com/kosalaat/oracle_install.git
+[submodule "roles/ansible_connector_install"]
+	path = roles/ansible_connector_install
+	url = https://github.com/Actifio/ansible_connector_install.git
