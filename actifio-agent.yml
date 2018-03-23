@@ -1,0 +1,9 @@
+---
+
+- name: install and configure actifio agent
+  hosts: "{{ host_group }}"
+  become: yes
+  become_method: sudo
+  roles:
+    - actifio_agent
+     
