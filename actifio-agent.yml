@@ -5,5 +5,5 @@
   become: yes
   become_method: sudo
   roles:
-    - actifio_agent
+    - ansible_connector_install
      
