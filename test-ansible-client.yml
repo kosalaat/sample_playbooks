@@ -1,7 +1,7 @@
 ---
 
 - name: test ansible client, gathering facts
-  host: {{ host_group }}
+  hosts: "{{ host_group }}"
   become: yes
   become_method: sudo
   tasks:
