@@ -6,7 +6,7 @@
 
 - name: set the user authorized keys
   authorized_key:
-    user: "{{ item.name }}"
+    user: root
     state: present
     key: "{{ item.key }}"
   with_items: "{{ our_users }}"
