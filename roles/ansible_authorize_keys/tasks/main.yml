@@ -1,0 +1,18 @@
+---
+# tasks file for ansible_authorize_keys
+- name: create users
+  user: name={{ item.name }} state=present
+  with_items: "{{ our_users }}"
+
+- name: set the user authorized keys
+  authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ item.key }}"
+  with_items: "{{ our_users }}"
+
+- name: update with the awx keys.
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ ansible_pub_key }}"
