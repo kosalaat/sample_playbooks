@@ -1,0 +1,6 @@
+---
+
+- name: umount all the images
+  hosts: localhost
+  roles:
+     - ansible_unmount_image

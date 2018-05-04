@@ -7,3 +7,6 @@
 [submodule "roles/ansible_connector_install"]
 	path = roles/ansible_connector_install
 	url = https://github.com/Actifio/ansible_connector_install.git
+[submodule "roles/ansible_unmount_image"]
+	path = roles/ansible_unmount_image
+	url = https://github.com/Actifio/ansible_unmount_image.git
