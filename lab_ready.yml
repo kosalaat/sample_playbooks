@@ -1,0 +1,17 @@
+---
+- name: Get the host lab ready
+  hosts: "{{ host_group }}"
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: ensure the hostname entry exist in /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: "^{{ ansible_host }}"
+        line: "{{ ansible_host }} {{inventory_hostname}}"
+
+    - name: set the hostname
+      hostname: name="{{ inventory_hostname }}"
+  roles: 
+    - ansible_authorize_keys
+        

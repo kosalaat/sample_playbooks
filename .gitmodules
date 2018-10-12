@@ -10,3 +10,6 @@
 [submodule "roles/ansible_unmount_image"]
 	path = roles/ansible_unmount_image
 	url = https://github.com/Actifio/ansible_unmount_image.git
+[submodule "roles/ansible_slack_sarg"]
+	path = roles/ansible_slack_sarg
+	url = https://github.com/actifio/ansible_slack_sarg.git

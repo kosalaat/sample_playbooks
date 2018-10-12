@@ -1,0 +1,51 @@
+---
+
+- name: set the disk list with datadisk
+  set_fact:
+    os_disk: [ { size_gb: "{{ vm_os_disk_size }}", type: "{{ vm_disk_type }}", datastore: "{{ vm_disk_datastore }}" }, { size_gb: "{{ vm_data_disk_size }}", type: "{{ vm_disk_type }}", datastore: "{{ vm_disk_datastore }}" } ]
+  when: vm_data_disk_size != 0
+
+- name: set the disk list without datadisk
+  set_fact:
+    os_disk: [ { size_gb: "{{ vm_os_disk_size }}", type: "{{ vm_disk_type }}", datastore: "{{ vm_disk_datastore }}" } ]
+  when: vm_data_disk_size == 0
+
+- name: create vm from a template
+  vmware_guest:
+    hostname: "{{ vcenter_ip }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: False
+    folder: "{{ vcenter_folder }}" # /Sydney/Lab
+    datacenter: "{{ vcenter_datacenter }}"
+    cluster: "{{ vcenter_cluster }}"
+    name: "{{ vm_name }}"
+    state: poweredon
+    template: "{{ vm_template }}"
+    disk: "{{ os_disk }}"
+    hardware:
+      memory_mb: "{{ vm_memory }}"
+      num_cpus: "{{ vm_vcpu }}"
+      num_cpu_cores_per_socket: "{{ vm_cpu_per_socket }}"
+      scsi: paravirtual
+      memory_reservation: "{{ vm_memory }}"
+      memory_reservation_lock: True
+      mem_limit: "{{ vm_memory }}"
+      mem_reservation: "{{ vm_memory }}"
+#      max_connections: "5"
+      hotadd_cpu: True
+      hotremove_cpu: True
+      hotadd_memory: False
+      version: "{{ vm_hardware_ver }}" # Hardware version of virtual machine
+    cdrom:
+      type: none
+    networks:
+      - name: "{{ vm_network_name }}"
+        type: "static"
+        ip: "{{ vm_ip_address }}"
+        netmask: "{{ vm_ip_netmask }}"
+        gateway: "{{ vm_ip_gateway }}"
+        dns_servers: "{{ vm_ip_dns }}"
+
+    wait_for_ip_address: yes
+  delegate_to: localhost

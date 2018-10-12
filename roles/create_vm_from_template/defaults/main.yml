@@ -1,0 +1,44 @@
+---
+#vCenter specific parameters
+# vCenter IP address, this could also be ESXi host address
+vcenter_ip: ''
+# vCenter username
+vcenter_username: ''
+# vCenter password
+vcenter_password: ''
+# vCenter folder to create the VM under
+vcenter_folder: ''
+# vCenter datacenter name, this could be the ESXI hostname
+vcenter_datacenter: 'ha-datecenter'
+# 
+vcenter_cluster: ''
+# VM name
+vm_name: "ANSIBLE{{ ansible_datetime.epoch }}"
+# Template Name to create the VM with 
+vm_template: ''
+# VM OS Disk Size in GB
+vm_os_disk_size: 15
+# VM data disk size
+vm_data_disk_size: 0
+# VM disk type (thin or eagerzeroedthick)
+vm_disk_type: "thin"
+# Datastore to hold the disks
+vm_disk_datastore: ''
+# VM Memory
+vm_memory: 512
+# VM CPU
+vm_vcpu: 1
+# VM cpus per socket
+vm_cpu_per_socket: 1
+# VM hardware compatibility
+vm_hardware_ver: 12
+# VM Network Name
+vm_network_name: ''
+# VM IP address
+vm_ip_address: ''
+# VM IP Netmask
+vm_ip_netmask: '255.255.255.0'
+# VM IP Gateway
+vm_ip_gateway: ''
+# VM DNS Address
+vm_ip_dns: [ '8.8.8.8' ]
