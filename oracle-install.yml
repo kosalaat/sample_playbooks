@@ -1,9 +1,24 @@
 ---
 
+- name: create new vm
+  hosts: localhost
+  gather_facts: false
+  roles: 
+    - create_vm_from_template
+  vars:
+    vm_inventory_group: 
+      - oranode
+
 - name: install oracle
-  hosts: "{{ host_group }}"
+  hosts: "oranode"
   become: yes
   become_method: sudo
   roles:
     - oracle_install
 
+- name: install and configure actifio agent
+  hosts: "oranode"
+  become: yes
+  become_method: sudo
+  roles:
+    - ansible_connector_install
